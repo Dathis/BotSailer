@@ -56,7 +56,7 @@ async def done(query: types.CallbackQuery,state:FSMContext):
 async def bot_message(message: types.Message, state: FSMContext):
     await bot.send_message(message.from_user.id, 'Добро пожаловать в меню Администратора. Ваше меню изменилось.\nВыберите что вы хотите сделать', reply_markup=kb.admin_panel)
 
-@dp.message_handler(text="🔸Отослать объявление всем пользователям")
+@dp.message_handler(text="🔸Отослать обьявление всем пользователям")
 async def bot_message(message: types.Message, state: FSMContext):
     await bot.send_message(message.from_user.id, 'Это сообщение отправится всем пользователям бота\nВведите сообщение:')
     await Alert.alert.set()
