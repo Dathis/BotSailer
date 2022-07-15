@@ -70,9 +70,13 @@ async def bot_message(message: types.Message, state: FSMContext):
     chat_id = cursor.fetchall()
     print(chat_id)
     for i in chat_id:
-        i = list(i)
-        await bot.send_message(i[0],f'{alert}')
-
+        try:
+            print(i[0])
+            await bot.send_message(i[0], f'{alert}')
+        except Exception as e:
+            print(e)
+    await bot.send_message(message.chat.id,'✅Объявление отправлено успешно')
+    await state.finish()
 @dp.message_handler(text="➕Добавить товар")
 async def bot_message(message: types.Message, state: FSMContext):
     await bot.send_message(message.from_user.id, 'Отлично,вы начали процедуру добавления товара.\nOтправьте мне имя продукта')
